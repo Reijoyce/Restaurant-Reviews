@@ -311,9 +311,7 @@ nav h1 a {
     display: flex;
     flex-direction: column;
   }
-  header nav {
-    order: 0;
-  }
+  
   header #breadcrumb {
     order: 1;
     width: 100vw;
@@ -353,5 +351,19 @@ nav h1 a {
   }
   #reviews-container h2 {
     text-align: center;
+  }
+.filter-options{
+  width: 100%; 
+}
+}
+@media only screen and (min-width: 750px) {
+  #restaurants-list li {
+    max-width: 35%;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  #restaurants-list li {
+    max-width: 300px;
   }
 }

@@ -1,6 +1,6 @@
 const reviewCache = 'my-cache-1';
 
-self.addEventListener('activate', (event) =>{
+self.addEventListener('activate', event =>{
     event.waitUntill(
         caches.keys().then(function(cacheNames){
             return Promise.all(
@@ -15,13 +15,15 @@ self.addEventListener('activate', (event) =>{
 });
 
 
-self.addEventListener('install', (event) =>{
+self.addEventListener('install', event =>{
     event.waitUntil(
-        caches.open(reviewCache).then((cache)=>{
+        caches.open(reviewCache).then(function (cache){
             console.log(cache);
             return cache.addAll(
                 [
                     '/',
+                    './index.html',
+                    './manifest.json',
                     './restaurant.html',
                     './css/styles.css',
                     './data/restaurants.json',
@@ -38,6 +40,10 @@ self.addEventListener('install', (event) =>{
                     './js/main.js',
                     './js/restaurant_info.js',
                     './js/dbhelper.js',
+                    './icons/icon-120x120.png',
+                    './icons/icon-144x144.png',
+                    '.icons/icon-152x152.png',
+                    './icons/icon-192x192.png'
 
                 ]
             );
@@ -50,12 +56,20 @@ self.addEventListener('install', (event) =>{
 
 
 
-self.addEventListener('fetch', (event) => {
+self.addEventListener('fetch', event => {
     console.log(event);
-        event.respondWith(caches.match(event.request).then((response)=>{
+        event.respondWith(caches.match(event.request).then(function (response){
         return response || fetch(event.request)
     })
     );//offline first 
     
 
+});
+
+self.addEventListener('fetch', event => {
+    event.respondWith(
+        caches.match(event.request).then(function (response) {
+            return response || fetch(event.request);
+        })
+    );
 });
