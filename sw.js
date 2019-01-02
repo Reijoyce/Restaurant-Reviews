@@ -4,16 +4,15 @@ self.addEventListener('activate', event =>{
     event.waitUntill(
         caches.keys().then(function(cacheNames){
             return Promise.all(
-                cacheNames.filter(function(cacheName){
-                    return cacheName.startsWith('my-') && cacheNames !== reviewCache
-                }).map(function(cacheName){
-                    return caches.delete(cacheName);
+                cacheNames.filter(function(cacheNames){
+                    return cacheNames.startsWith('my-') && cacheNames !== reviewCache
+                }).map(function(cacheNames){
+                    return caches.delete(cacheNames);
                 })
             );
         })
     );
 });
-
 
 self.addEventListener('install', event =>{
     event.waitUntil(
@@ -44,26 +43,12 @@ self.addEventListener('install', event =>{
                     './icons/icon-144x144.png',
                     '.icons/icon-152x152.png',
                     './icons/icon-192x192.png'
-
                 ]
             );
         }).catch(error => {
             console.log(error);
         })
     );
-});
-
-
-
-
-self.addEventListener('fetch', event => {
-    console.log(event);
-        event.respondWith(caches.match(event.request).then(function (response){
-        return response || fetch(event.request)
-    })
-    );//offline first 
-    
-
 });
 
 self.addEventListener('fetch', event => {
