@@ -35,7 +35,7 @@ self.addEventListener('install', function (event) {
                     '/img/10.jpg',
                     '/js/main.js',
                     '/js/restaurant_info.js',
-                    '/js/dbhelper.js',
+                    './js/dbhelper.js',
                     '/icons/icon-120x120.png',
                     '/icons/icon-144x144.png',
                     '/icons/icon-152x152.png',
