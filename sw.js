@@ -20,7 +20,7 @@ self.addEventListener('install', function (event) {
             return cache.addAll(
                 [
                     'manifest.json',
-                    'restaurant.html',
+                    './restaurant.html',
                     '/css/styles.css',
                     '/data/restaurants.json',
                     '/img/1.jpg',
